@@ -6,7 +6,7 @@
 /*   By: henolimp <henolimp@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 15:10:33 by henolimp      #+#    #+#                 */
-/*   Updated: 2022/11/16 12:54:00 by henolimp      ########   odam.nl         */
+/*   Updated: 2023/03/20 15:57:15 by henolimp      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 /*     The memcmp() function compares byte string s1 against byte string s2.
