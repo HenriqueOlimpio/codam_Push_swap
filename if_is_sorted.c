@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstlast.c                                       :+:    :+:            */
+/*   if_is_sorted.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: henolimp <henolimp@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/03/20 16:09:31 by henolimp      #+#    #+#                 */
-/*   Updated: 2023/03/22 14:16:44 by henolimp      ########   odam.nl         */
+/*   Created: 2023/03/30 14:40:16 by henolimp      #+#    #+#                 */
+/*   Updated: 2023/03/30 14:44:54 by henolimp      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "includes/push_swap.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	if_is_sorted(t_stack *stack_a)
 {
-	if (!lst)
-		return (0);
-	while(lst ->next)
-		lst = lst -> next;
-	return (lst);
+	int	i;
+
+	i = stack_a->nbr;
+	while (stack_a)
+	{
+		if (i > stack_a->nbr)
+			return (0);
+		i = stack_a->nbr;
+		stack_a = stack_a->next;
+	}
+	return(1);
 }

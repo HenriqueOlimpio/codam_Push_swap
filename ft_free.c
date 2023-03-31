@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstlast.c                                       :+:    :+:            */
+/*   ft_free.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: henolimp <henolimp@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/03/20 16:09:31 by henolimp      #+#    #+#                 */
-/*   Updated: 2023/03/22 14:16:44 by henolimp      ########   odam.nl         */
+/*   Created: 2023/03/30 13:32:52 by henolimp      #+#    #+#                 */
+/*   Updated: 2023/03/30 16:03:33 by henolimp      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "includes/push_swap.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	ft_free(t_stack **stack)
 {
-	if (!lst)
-		return (0);
-	while(lst ->next)
-		lst = lst -> next;
-	return (lst);
+	t_stack *tmp;
+
+	if (*stack)
+		return ;
+	while (*stack)
+	{
+		tmp = (*stack)->next;
+		free(*stack);
+		*stack = tmp;
+	}
 }

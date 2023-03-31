@@ -6,13 +6,14 @@
 /*   By: henolimp <henolimp@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/20 15:56:18 by henolimp      #+#    #+#                 */
-/*   Updated: 2023/03/20 16:01:53 by henolimp      ########   odam.nl         */
+/*   Updated: 2023/03/25 15:48:57 by henolimp      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
-void ft_lstadd_back(t_list **lst, t_list *new)
+
+
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	if (lst)
 	{

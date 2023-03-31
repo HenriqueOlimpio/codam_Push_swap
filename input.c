@@ -1,5 +1,30 @@
-#include "../includes/push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   input.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: henolimp <henolimp@student.codam.n>          +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/03/30 14:05:31 by henolimp      #+#    #+#                 */
+/*   Updated: 2023/03/30 18:31:52 by henolimp      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "includes/push_swap.h"
+void	ft_freestr(char **stack)
+{
+	char	*n1;
+
+	if(!stack)
+		return ;
+	while (*stack)
+	{
+		n1 = *stack;
+		stack++;
+		free(n1);
+	}
+	*stack = NULL;
+}
 int	ft_atoi1(const char *str)
 {
 	long long int	nbr;
@@ -42,7 +67,7 @@ t_stack *input(char **argv)
 	while(tmp[i])
 	{
 		j = ft_atoi1(tmp[i]);
-		ft_add_back(&a, ft_stack_new(j));
+		ft_add_back(&a, ft_new_stack(j));
 		i++;
 	}
 	ft_freestr(tmp);
@@ -59,7 +84,7 @@ t_stack *ft_start_list(int argc, char **argv)
 	i = 1;
 	a = NULL;
 	if (argc < 2)
-		write(1,"error\n", 6);
+		ft_error();
 	if (argc == 2)
 		a = input(argv);
 	else
@@ -67,10 +92,9 @@ t_stack *ft_start_list(int argc, char **argv)
 		while (i < argc)
 		{
 			j = ft_atoi1(argv[i]);
-			ft_add_back(&a, ft_stack_new(j));
+			ft_add_back(&a, ft_new_stack(j));
 			i++;
 		}
 	}
 	return (a);
 }
-

@@ -6,12 +6,13 @@
 #    By: henolimp <henolimp@student.codam.n>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/19 16:46:27 by henolimp      #+#    #+#                  #
-#    Updated: 2022/11/03 17:20:06 by henolimp      ########   odam.nl          #
+#    Updated: 2023/03/22 15:46:43 by henolimp      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME=libft.a
+HDRS = libft.h
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
@@ -52,9 +53,23 @@ SRC = ft_atoi.c\
 	ft_strmapi.c \
 	ft_split.c \
 
+SRC_BONUS = ft_lstadd_back.c \
+	ft_lstadd_front.c \
+	ft_lstclear.c \
+	ft_lstsize.c \
+	ft_lstdelone.c \
+	ft_lstnew.c \
+	ft_lstiter.c \
+	ft_lstlast.c \
+	ft_lstmap.c \
+
 OBJS = $(SRC:.c=.o)
+BONUS_OBJS = $(SRC_BONUS:.c=.o)
 
 all:	$(NAME)
+
+bonus:	$(OBJS) $(BONUS_OBJS) $(HDRS)
+				@$(AR) $(NAME) $(OBJS) $(BONUS_OBJS)
 
 $(NAME):	$(OBJS)
 		ar rcs $(NAME) $(OBJS)

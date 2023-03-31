@@ -6,7 +6,7 @@
 /*   By: henolimp <henolimp@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/03 18:16:23 by henolimp      #+#    #+#                 */
-/*   Updated: 2023/03/20 16:37:36 by henolimp      ########   odam.nl         */
+/*   Updated: 2023/03/25 15:49:33 by henolimp      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,5 @@ void ft_lstdelone(t_list *lst, void (*del)(void
 int		ft_lstsize(t_list *lst);
 t_list *ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstadd_back(t_list **lst, t_list *new);
 #endif
