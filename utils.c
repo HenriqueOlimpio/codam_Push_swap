@@ -1,33 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   input.c                                            :+:    :+:            */
+/*   utils.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: henolimp <henolimp@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/03/30 14:05:31 by henolimp      #+#    #+#                 */
-/*   Updated: 2023/03/30 18:31:52 by henolimp      ########   odam.nl         */
+/*   Created: 2023/04/02 17:09:50 by henolimp      #+#    #+#                 */
+/*   Updated: 2023/04/04 15:10:35 by henolimp      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "includes/push_swap.h"
-void	ft_freestr(char **stack)
-{
-	char	*n1;
 
-	if(!stack)
-		return ;
-	while (*stack)
-	{
-		n1 = *stack;
-		stack++;
-		free(n1);
-	}
-	*stack = NULL;
-}
-int	ft_atoi1(const char *str)
+int	ft_size_argv(char **argv)
 {
-	long long int	nbr;
+	int		i;
+
+	i = 0;
+	if (!argv)
+		return (0);
+	while(argv[i])
+		i++;
+	return(i);
+}
+
+void	check_dup(int *stack, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while(i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (stack[i] == stack[j])
+				ft_error(stack);
+			j++;
+		}
+		i++;
+	}
+}
+
+int	ft_atoi_mod(char *str, int *stack)
+{
+	int	nbr;
 	int	i;
 	int	mod;
 
@@ -50,51 +67,44 @@ int	ft_atoi1(const char *str)
 		nbr = (nbr * 10) + (str[i] - '0');
 		i++;
 	}
-	if((mod * nbr) > 2147483647 || (mod * nbr) < -2147483648)
+	if((mod * nbr) > INT_MAX || (mod * nbr) < INT_MIN)
+	{
+		ft_error(stack);
 		write(1, "error\n", 6);
+	}
 	return (mod * nbr);
 }
-t_stack *input(char **argv)
-{
-	t_stack *a;
-	char	**tmp;
-	int			i;
-	int			j;
 
-	a = NULL;
-	i = 0;
-	tmp = ft_split(argv[1], 32);
-	while(tmp[i])
-	{
-		j = ft_atoi1(tmp[i]);
-		ft_add_back(&a, ft_new_stack(j));
-		i++;
-	}
-	ft_freestr(tmp);
-	free(tmp);
-	return (a);
-}
-
-t_stack *ft_start_list(int argc, char **argv)
+int	check_if_is_sorted(int *a, int size, int type)
 {
-	t_stack *a;
 	int	i;
-	int	j;
 
-	i = 1;
-	a = NULL;
-	if (argc < 2)
-		ft_error();
-	if (argc == 2)
-		a = input(argv);
-	else
+	if (type == 0)
 	{
-		while (i < argc)
+		i = 1;
+		while (i < size)
 		{
-			j = ft_atoi1(argv[i]);
-			ft_add_back(&a, ft_new_stack(j));
+			if(a [i - 1] > a [i])
+				return (0);
 			i++;
 		}
+		return (i);
 	}
-	return (a);
+	else
+	{
+		i = 1;
+		while (i < size)
+		{
+			if(a[i - 1] < a[i])
+				return (0);
+			i++;
+		}
+		return (1);
+	}
+}
+void	ft_error(int *stack)
+{
+	free(stack);
+	write(2,"Error\n",6);
+	exit(1);
 }
