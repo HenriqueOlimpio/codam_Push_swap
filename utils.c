@@ -6,12 +6,12 @@
 /*   By: henolimp <henolimp@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/02 17:09:50 by henolimp      #+#    #+#                 */
-/*   Updated: 2023/04/04 15:10:35 by henolimp      ########   odam.nl         */
+/*   Updated: 2023/04/08 17:43:04 by henolimp      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-#include "includes/push_swap.h"
+#include "inc/push_swap.h"
 
-int	ft_size_argv(char **argv)
+int	ft_find_av_size(char **argv)
 {
 	int		i;
 
@@ -23,7 +23,7 @@ int	ft_size_argv(char **argv)
 	return(i);
 }
 
-void	check_dup(int *stack, int size)
+void	ft_check_repeat(int *stack, int size)
 {
 	int	i;
 	int	j;
@@ -42,7 +42,7 @@ void	check_dup(int *stack, int size)
 	}
 }
 
-int	ft_atoi_mod(char *str, int *stack)
+/*int	ft_atoi_mod(char *str, int *stack)
 {
 	int	nbr;
 	int	i;
@@ -73,9 +73,37 @@ int	ft_atoi_mod(char *str, int *stack)
 		write(1, "error\n", 6);
 	}
 	return (mod * nbr);
+}*/
+int	ft_ps_atoi(char *c, int *stack)
+{
+	int		i;
+	long	nb;
+	int		sign;
+
+	i = 0;
+	sign = 1;
+	nb = 0;
+	while ((c[i] >= 9 && c[i] <= 13) || c[i] == 32)
+		i++;
+	if (c[i] == '+' || c[i] == '-')
+	{
+		if (c[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (c[i])
+	{
+		if (c[i] < '0' || c[i] > '9')
+			ft_error(stack);
+		nb = (nb * 10) + (c[i] - 48);
+		i++;
+	}
+	if ((nb > 2147483647 && sign == 1) || (nb > 2147483648 && sign == -1))
+		ft_error(stack);
+	return (nb * sign);
 }
 
-int	check_if_is_sorted(int *a, int size, int type)
+int ft_check_sorted(int *a, int size, int type)
 {
 	int	i;
 
